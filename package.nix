@@ -1,7 +1,7 @@
 {pkgs, ...}:
 with pkgs;
   maven.buildMavenPackage rec {
-    pname = "afirma";
+    pname = "autofirma";
     version = "1.8.2";
     owner = "ctt-gob-es";
     repo = "clienteafirma";
@@ -17,7 +17,8 @@ with pkgs;
     ];
 
     installPhase = ''
-      mkdir -p $out/{bin,usr/{lib,share}}
+      mkdir -p $out/usr/{lib,share}
+      mkdir -p $out/bin
 
       echo "#!/bin/bash\njava -Djdk.tls.maxHandshakeMessageSize=65536 -jar /usr/lib/AutoFirma/AutoFirma.jar "$@"" > autofirma
 
@@ -43,7 +44,7 @@ with pkgs;
       install -Dm644 afirma-simple-installer/linux/instalador_deb/src/usr/share/common-licenses/* \
           $out/usr/share/licenses
 
-      makeWrapper ${jdk11}/bin/java $out/usr/bin/autofirma \
+      makeWrapper ${jdk11}/bin/java $out/bin/autofirma \
         --add-flags "-jar $out/usr/share/java/autofirma/autofirma.jar"
     '';
 
