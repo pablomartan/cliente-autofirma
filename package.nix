@@ -38,7 +38,7 @@ with pkgs;
 
       mkdir -p $out/usr/share/application
       install -Dm644 afirma-simple-installer/linux/instalador_deb/src/usr/share/applications/afirma.desktop \
-        $out/usr/share/applications/autofirma.desktop
+        $out/usr/share/applications/afirma.desktop
 
       mkdir -p $out/usr/share/licenses
       install -Dm644 afirma-simple-installer/linux/instalador_deb/src/usr/share/common-licenses/* \
